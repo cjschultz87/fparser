@@ -37,8 +37,6 @@ index = 0
 alpha = 0
 
 while alpha == 0 and index < bytes_L:
-    print bytes[index]
-    
     if bytes[index] == "ff":
         index += 1
         
@@ -86,8 +84,6 @@ while alpha == 0 and index < bytes_L:
                 segment_val -= 1
             
         index += segment_val
-        
-        print index
 
     else:
         print "Tagged length not congruent with bytes!"
