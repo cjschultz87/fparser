@@ -13,10 +13,10 @@ bytes_L = 0
 while True:
     alpha = foxtrot.readline()
     
-    bytes_L += 1
-    
     if alpha == "":
         break
+        
+    bytes_L += 1
     
     bytes.append(alpha[0:2])
     
@@ -37,15 +37,16 @@ index = 0
 alpha = 0
 
 while alpha == 0 and index < bytes_L:
+    print bytes[index]
+    
     if bytes[index] == "ff":
-        print index
         index += 1
         
         segment_val = 0
         
-        if bytes[index] in tags[16:25]:
+        if bytes[index] in tags[16:26]:
             index += 1
-        
+            
         elif (bytes[index] in tags) and not(bytes[index] in tags[16:26]):
             if bytes[index] == "da":
                 print "start of scan: byte " + str(index)
@@ -85,5 +86,13 @@ while alpha == 0 and index < bytes_L:
                 segment_val -= 1
             
         index += segment_val
+        
+        print index
+
+    else:
+        print "Tagged length not congruent with bytes!"
+        
+        while not(bytes[index] == "ff"):
+            index += 1
         
 print str(index + 1) + " bytes"
